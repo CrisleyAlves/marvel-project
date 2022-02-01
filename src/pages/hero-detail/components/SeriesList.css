@@ -1,0 +1,18 @@
+.SeriesList {
+  margin-top: 15px;
+}
+
+.SeriesList-item {
+  margin-bottom: 15px;
+  font-size: 17px;
+}
+
+.SeriesList-item a {
+  color: var(--black);
+}
+
+@media (min-width: 480px) {
+  .SeriesList-item a:hover {
+    color: var(--red);
+  }
+}
