@@ -1,0 +1,13 @@
+.Navbar {
+  align-items: center;
+  background-color: var(--red);
+  display: flex;
+  justify-content: center;
+  padding: 15px;
+  width: 100%;
+}
+
+.Navbar .Logo {
+  color: var(--white);
+  font-size: 50px;
+}

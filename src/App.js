@@ -2,12 +2,12 @@ import { Provider } from 'react-redux'
 
 import store from './state/store'
 
-const Hello = () => <h1>Hello :)</h1>
+import Navbar from './components/navbar/navbar'
 
 const App = () => {
   return (
     <Provider store={store}>
-      <Hello />
+      <Navbar />
     </Provider>
   )
 }
