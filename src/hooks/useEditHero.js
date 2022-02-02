@@ -7,14 +7,14 @@ const EDIT_HERO_INITIAL_STATE = {
 const useEditHero = () => {
   const [hero, setHero] = useState(EDIT_HERO_INITIAL_STATE)
   
-  const onChangeField = (fieldName, fieldValue) => setHero({ ...hero, [fieldName]: fieldValue })
+  const onChangeField = (e) => setHero({ ...hero, [e.target.name]: e.target.value })
 
-  const onSubmitEditHeroForm = () => {}
+  const updateHero = () => console.log(hero)
 
   return {
     hero,
     onChangeField,
-    onSubmitEditHeroForm
+    updateHero
   }
 
 }
