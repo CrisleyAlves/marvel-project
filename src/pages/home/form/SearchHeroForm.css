@@ -1,0 +1,24 @@
+.SearchHeroForm {
+  background-color: var(--white);
+  border-radius: 10px;
+  margin: 15px 0;
+  padding: 15px;
+}
+
+.SearchHeroForm-actions {
+  margin-top: 15px;
+}
+
+.SearchHeroForm-actions .Button {
+  width: 100%;
+  padding: 7px 25px;
+}
+
+@media (min-width: 480px) {
+  .SearchHeroForm {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    width: 100%;
+  }
+}

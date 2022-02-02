@@ -1,13 +1,28 @@
 import { connect } from 'react-redux';
 import './Home.css';
 
-import { getAllCharacters } from '../../state/actions/character'
+import { HeroList } from '../../components/';
+import MarvelWallpaper from '../../images/marvel_wallpaper.jpg';
 
-import HeroList from '../../components/HeroList/HeroList';
+import SearchHeroForm from './form/SearchHeroForm';
+import { getAllCharacters } from '../../state/actions/character'
+import useSearchHero from '../../hooks/useSearchHero';
 
 const HomePage = () => {
+  const { search, onChangeField, searchHero } = useSearchHero()
+
   return (
     <div className='Home'>
+      <div className='MarvelWallpaperWrapper'>
+        <img src={MarvelWallpaper} alt='Marvel' title='Marvel' />
+
+        <SearchHeroForm
+          value={search.name}
+          onChangeField={onChangeField}
+          onSubmitSearchHero={searchHero}
+        />
+      </div>
+
       <HeroList />
     </div>
   )
