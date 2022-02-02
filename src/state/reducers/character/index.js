@@ -1,11 +1,21 @@
-import { ERROR_GET_ALL_CHARACTERS, GET_ALL_CHARACTERS, LOADING_GET_ALL_CHARACTERS, SUCCESS_GET_ALL_CHARACTERS } from "../../actions/character/types";
+import {
+  ERROR_GET_ALL_CHARACTERS,
+  ERROR_SEARCH_CHARACTER,
+  GET_ALL_CHARACTERS,
+  LOADING_GET_ALL_CHARACTERS,
+  LOADING_SEARCH_CHARACTER,
+  SEARCH_CHARACTER
+} from "../../actions/character/types";
+
+const REQUEST_STATUS = {
+  loading: false,
+  mainError: ''
+}
 
 const initialState = {
   charactersList: [],
-  charactersListRequestStatus: {
-    loading: false,
-    mainError: ''
-  }
+  charactersListRequestStatus: REQUEST_STATUS,
+  characterSearchRequestStatus: REQUEST_STATUS,
 };
 
 export default function characterReducer (state = initialState, action) {
@@ -29,11 +39,25 @@ export default function characterReducer (state = initialState, action) {
         ...state,
         charactersListRequestStatus: { loading: false, mainError: 'An error occured, please try again later' }
       }
-    case SUCCESS_GET_ALL_CHARACTERS:
-        return {
-          ...state,
-          charactersListRequestStatus: { loading: false, mainError: '' }
+    case SEARCH_CHARACTER:
+      return {
+        ...state,
+        charactersList: action.payload,
+        characterSearchRequestStatus: {
+          loading: false,
+          mainError: ''
         }
+      }
+    case LOADING_SEARCH_CHARACTER:
+      return {
+        ...state,
+        characterSearchRequestStatus: { loading: true }
+      }
+    case ERROR_SEARCH_CHARACTER:
+      return {
+        ...state,
+        characterSearchRequestStatus: { loading: false, mainError: 'An error occured, please try again later' }
+      }
     default:
       return state;
   }
