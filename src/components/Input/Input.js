@@ -6,12 +6,13 @@ const Input = ({
   name = '',
   onChange = () => {},
   value = '',
-  label = ''
+  label = '',
+  placeholder= ""
 }) => {
   return (
     <div className='InputGroup'>
       <label htmlFor='name'>{label}</label>
-      <input className="Input" id={id} name={name} type={type} onChange={onChange} value={value} />
+      <input placeholder={placeholder} className="Input" id={id} name={name} type={type} onChange={onChange} value={value} />
     </div>
   )
 }

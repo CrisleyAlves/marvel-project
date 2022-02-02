@@ -6,6 +6,7 @@
 
 .HeroList .HeroCard {
   margin-bottom: 15px;
+  width: 48%;
 }
 
 
@@ -15,6 +16,6 @@
   }
   .HeroList .HeroCard {
     width: 24%;
-    margin: 5px;
+    margin: 6px;
   }
 }
