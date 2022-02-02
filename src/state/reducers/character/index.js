@@ -1,8 +1,12 @@
 import {
+  ADD_CHARACTER_TO_LOCAL_STORAGE,
   ERROR_GET_ALL_CHARACTERS,
+  ERROR_GET_CHARACTER_BY_ID,
   ERROR_SEARCH_CHARACTER,
   GET_ALL_CHARACTERS,
+  GET_CHARACTER_BY_ID,
   LOADING_GET_ALL_CHARACTERS,
+  LOADING_GET_CHARACTER_BY_ID,
   LOADING_SEARCH_CHARACTER,
   SEARCH_CHARACTER
 } from "../../actions/character/types";
@@ -14,8 +18,10 @@ const REQUEST_STATUS = {
 
 const initialState = {
   charactersList: [],
+  characterDetail: {},
   charactersListRequestStatus: REQUEST_STATUS,
   characterSearchRequestStatus: REQUEST_STATUS,
+  characterDetailRequestStatus: REQUEST_STATUS,
 };
 
 export default function characterReducer (state = initialState, action) {
@@ -58,6 +64,30 @@ export default function characterReducer (state = initialState, action) {
         ...state,
         characterSearchRequestStatus: { loading: false, mainError: 'An error occured, please try again later' }
       }
+    case GET_CHARACTER_BY_ID:
+      return {
+        ...state,
+        characterDetail: action.payload,
+        characterDetailRequestStatus: { loading: false, mainError: '' }
+      }
+    case LOADING_GET_CHARACTER_BY_ID:
+      return {
+        ...state,
+        characterDetailRequestStatus: { loading: true }
+      }
+    case ERROR_GET_CHARACTER_BY_ID:
+      return {
+        ...state,
+        characterDetailRequestStatus: { loading: false, mainError: 'An error occured, please try again later' }
+      }
+
+    case ADD_CHARACTER_TO_LOCAL_STORAGE:
+      const heroes = JSON.parse(localStorage.getItem('heroes')) || []
+      const userHeroes = heroes.filter(hero => hero.id !== action.payload.id)
+      const newUserHeroes = [...userHeroes, action.payload]
+
+      localStorage.setItem('heroes', JSON.stringify(newUserHeroes))
+      return state
     default:
       return state;
   }

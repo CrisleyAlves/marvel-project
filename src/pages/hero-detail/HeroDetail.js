@@ -1,6 +1,7 @@
+import { useSelector } from 'react-redux';
 import './HeroDetail.css'
 
-import { SectionTitle, Button, Modal } from '../../components/';
+import { SectionTitle, Button, Modal, Loader } from '../../components/';
 import SeriesList from './components/SeriesList';
 
 import EditHeroForm from './form/EditHeroForm';
@@ -9,41 +10,43 @@ import useEditHero from '../../hooks/useEditHero'
 import useToggle from '../../hooks/useToggle'
 
 const HeroDetail = () => {
-  const {
-    setToggle,
-    toggle
-  } = useToggle()
+  const { setToggle: setShowModal, toggle: showModal } = useToggle()
+  const { hero, onChangeField, updateHero, setHero } = useEditHero()
+  
+  const { characterDetail, characterDetailRequestStatus } = useSelector(state => state.character)
 
-  const {
-    hero,
-    onChangeField,
-    updateHero
-  } = useEditHero()
-
-  const onClickEditButton = () => setToggle(true)
-  const onClickCloseModal = () => setToggle(false)
-
-  const handleOnSubmitEditHeroForm = async (e) => {
-    e.preventDefault();
-    await updateHero()
-    setToggle(false)
+  const onClickEditButton = () => {
+    setShowModal(true)
+    setHero(characterDetail)
   }
+
+  const onClickCloseModal = () => setShowModal(false)
+
+  const handleOnSubmitEditHeroForm = (e) => {
+    e.preventDefault();
+    updateHero()
+    setShowModal(false)
+  }
+
+  if (characterDetailRequestStatus.loading) return <Loader />
+
+  const heroPhoto = `${characterDetail?.thumbnail?.path}.${characterDetail?.thumbnail?.extension}`;
 
   return (
     <div className='HeroDetail'>
 
-      {toggle && 
+      {showModal && 
         <Modal title='Edit Hero' showModal={true} onClickCloseModal={onClickCloseModal}>
           <EditHeroForm hero={hero} onChangeField={onChangeField} onSubmitEditHeroForm={handleOnSubmitEditHeroForm} />
         </Modal>
       }
 
       <div className='HeroDetail-header'>
-        <img src='http://i.annihil.us/u/prod/marvel/i/mg/5/a0/538615ca33ab0.jpg' alt='' title='' />
+        <img src={heroPhoto} alt='' title='' />
       </div>
       <div className='HeroDetail-content'>
         <SectionTitle text='Name' />
-        <h1>HULK <Button styleType='secondary' onClick={() => onClickEditButton()}>Edit</Button></h1>
+        <h1>{characterDetail.name} <Button styleType='secondary' onClick={onClickEditButton}>Edit</Button></h1>
                 
         <SeriesList />
       </div>

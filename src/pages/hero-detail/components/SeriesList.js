@@ -1,17 +1,18 @@
 import './SeriesList.css'
 
 import { SectionTitle } from '../../../components';
+import { useSelector } from 'react-redux';
 
-const SeriesList = ({
-  series = [1,2,3,4,5,6]
-}) => {
+const SeriesList = () => {
+  const { characterDetail } = useSelector(state => state.character)
+
   return (
     <>
     <SectionTitle text='Series' />
     <ul className='SeriesList'>
-      {series.map((serie, index) =>
+      {characterDetail?.series?.items.map((serie, index) =>
         <li key={index} className='SeriesList-item'>
-          <a href='http>//www.google.com.br'> Seré blab albalbalbal </a>
+          {serie.name}
         </li>
       )}
     </ul>
