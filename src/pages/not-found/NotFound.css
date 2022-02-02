@@ -1,0 +1,9 @@
+.NotFound {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.NotFound img {
+  width: 50%;
+}
