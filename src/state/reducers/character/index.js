@@ -78,7 +78,7 @@ export default function characterReducer (state = initialState, action) {
     case ERROR_GET_CHARACTER_BY_ID:
       return {
         ...state,
-        characterDetailRequestStatus: { loading: false, mainError: 'An error occured, please try again later' }
+        characterDetailRequestStatus: { loading: false, mainError: action.payload }
       }
 
     case ADD_CHARACTER_TO_LOCAL_STORAGE:

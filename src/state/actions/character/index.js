@@ -76,7 +76,8 @@ export const getCharacterById = (id = 1011334) => async (dispatch) => {
     }
   } catch (error) {
     dispatch({
-      type: ERROR_GET_CHARACTER_BY_ID
+      type: ERROR_GET_CHARACTER_BY_ID,
+      payload: error.response.data.status
     }) 
   }
 };
