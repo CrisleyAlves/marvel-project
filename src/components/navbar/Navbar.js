@@ -1,9 +1,10 @@
+import { Link } from 'react-router-dom'
 import './Navbar.css'
 
 const Navbar = () => {
   return (
     <div className="Navbar">
-      <a href='http://www.google.com' className='Logo'>MARVEL</a>
+      <Link to="/" className='Logo'>MARVEL</Link>
     </div>
   )
 };
