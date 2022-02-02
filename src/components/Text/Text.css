@@ -1,0 +1,17 @@
+.Text {
+  font-size: 18px;
+  margin: 5px 0;
+  text-align: center;
+}
+
+.Text--success {
+  color: green;
+}
+
+.Text--danger {
+  color: red;
+}
+
+.Text--warning {
+  color: orangered;
+}
