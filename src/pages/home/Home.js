@@ -31,8 +31,9 @@ const HomePage = () => {
       </div>
 
       {charactersListRequestStatus.loading && <Loader />}
-      <Text styleType='danger'>{charactersListRequestStatus.mainError}</Text>
+      {charactersListRequestStatus.mainError && <Text styleType='danger'>{charactersListRequestStatus.mainError}</Text>}
       {!charactersListRequestStatus.loading && !charactersListRequestStatus.mainError && <HeroList heroes={charactersList} />}
+      {!charactersListRequestStatus.loading && charactersList.length === 0 && <Text styleType='warning'>We couldn't find any hero</Text>}
     </div>
   )
 }

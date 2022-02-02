@@ -1,5 +1,8 @@
 import { useState } from "react"
 
+import { getAllCharacters, searchCharacter } from '../state/actions/character'
+import store from '../state/store'
+
 const SEARCH_HERO_INITIAL_STATE = {
   name: ''
 }
@@ -11,7 +14,12 @@ const useSearchHero = () => {
 
   const searchHero = (e) => {
     e.preventDefault()
-    console.log(search)
+
+    if(search.name.length === 0) {
+      store.dispatch(getAllCharacters())
+      return
+    }
+    store.dispatch(searchCharacter(search))
   }
 
   return {

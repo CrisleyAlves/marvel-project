@@ -7,12 +7,13 @@ const Input = ({
   onChange = () => {},
   value = '',
   label = '',
-  placeholder= ""
+  placeholder= "",
+  required = false
 }) => {
   return (
     <div className='InputGroup'>
       <label htmlFor='name'>{label}</label>
-      <input placeholder={placeholder} className="Input" id={id} name={name} type={type} onChange={onChange} value={value} />
+      <input required={required} placeholder={placeholder} className="Input" id={id} name={name} type={type} onChange={onChange} value={value} />
     </div>
   )
 }
