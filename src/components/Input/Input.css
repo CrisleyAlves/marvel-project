@@ -1,0 +1,14 @@
+.InputGroup {
+  display: flex;
+  flex-direction: column;
+}
+
+.InputGroup label {
+  margin-bottom: 5px;
+}
+
+.InputGroup .Input {
+  border-radius: 5px;
+  border: 1px solid #e6e6e6;
+  padding: 5px;
+}
