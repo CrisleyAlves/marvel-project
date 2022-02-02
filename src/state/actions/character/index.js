@@ -2,15 +2,25 @@ import axios from 'axios';
 
 import { HTTP_STATUS } from '../../utils';
 import { GET_ALL_CHARACTERS_ENDPOINT } from '../../../api/endpoints';
-import { GET_ALL_CHARACTERS } from './types';
+import { ERROR_GET_ALL_CHARACTERS, GET_ALL_CHARACTERS, LOADING_GET_ALL_CHARACTERS } from './types';
 
 export const getAllCharacters = () => async (dispatch) => {
-  const { code, data } = await axios.get(GET_ALL_CHARACTERS_ENDPOINT)
+  dispatch({ type: LOADING_GET_ALL_CHARACTERS });
 
-  if(code === HTTP_STATUS.ok) {
+  try {
+    const { data } = await axios.get(GET_ALL_CHARACTERS_ENDPOINT)
+
+    if(data.code === HTTP_STATUS.ok) {
+      const { data: characters } = data;
+
+      dispatch({
+        type: GET_ALL_CHARACTERS,
+        payload: characters.results,
+      });
+    } 
+  } catch (error) {
     dispatch({
-      type: GET_ALL_CHARACTERS,
-      payload: data,
-    });
+      type: ERROR_GET_ALL_CHARACTERS
+    }) 
   }
 };
