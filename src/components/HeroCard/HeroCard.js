@@ -1,13 +1,19 @@
 import './HeroCard.css'
 
-const HeroCard = () => {
+const HeroCard = ({
+  id,
+  name,
+  thumbnail
+}) => {
+  const heroPhoto = `${thumbnail.path}.${thumbnail.extension}`;
+
   return (
     <div className="HeroCard">
       <div className="HeroCard-header">
-        <img className="HeroCard-image" src="" alt="" title="" />
+        <img className="HeroCard-image" src={heroPhoto} alt="" title="" />
       </div>
       <div className="HeroCard-content">
-        <h2>HERO NAME</h2>
+        <h2>{name}</h2>
         <a href="http://www.google.com">detail</a>
       </div>
     </div>

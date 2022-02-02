@@ -6,7 +6,7 @@ const HeroList = ({
 }) => {
   return (
     <div className="HeroList">
-      {heroes.map((hero, index) => <HeroCard key={index} />)}
+      {heroes.map((hero, index) => <HeroCard key={hero.id} id={hero.id} name={hero.name} thumbnail={hero.thumbnail} />)}
     </div>
   )
 }
