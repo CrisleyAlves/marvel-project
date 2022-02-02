@@ -1,20 +1,20 @@
-.HeroList {
+.CharacterList {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
 }
 
-.HeroList .HeroCard {
+.CharacterList .CharacterCard {
   margin-bottom: 15px;
   width: 48%;
 }
 
 
 @media (min-width: 480px) {
-  .HeroList {
+  .CharacterList {
     justify-content: flex-start;
   }
-  .HeroList .HeroCard {
+  .CharacterList .CharacterCard {
     width: 24%;
     margin: 6px;
   }

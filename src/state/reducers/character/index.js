@@ -82,11 +82,11 @@ export default function characterReducer (state = initialState, action) {
       }
 
     case ADD_CHARACTER_TO_LOCAL_STORAGE:
-      const heroes = JSON.parse(localStorage.getItem('heroes')) || []
-      const userHeroes = heroes.filter(hero => hero.id !== action.payload.id)
-      const newUserHeroes = [...userHeroes, action.payload]
+      const characters = JSON.parse(localStorage.getItem('characters')) || []
+      const userCharacters = characters.filter(character => character.id !== action.payload.id)
+      const newUserCharacters = [...userCharacters, action.payload]
 
-      localStorage.setItem('heroes', JSON.stringify(newUserHeroes))
+      localStorage.setItem('characters', JSON.stringify(newUserCharacters))
       return state
     default:
       return state;

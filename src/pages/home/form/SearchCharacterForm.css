@@ -1,21 +1,21 @@
-.SearchHeroForm {
+.SearchCharacterForm {
   background-color: var(--white);
   border-radius: 10px;
   margin: 15px 0;
   padding: 15px;
 }
 
-.SearchHeroForm-actions {
+.SearchCharacterForm-actions {
   margin-top: 15px;
 }
 
-.SearchHeroForm-actions .Button {
+.SearchCharacterForm-actions .Button {
   width: 100%;
   padding: 7px 25px;
 }
 
 @media (min-width: 480px) {
-  .SearchHeroForm {
+  .SearchCharacterForm {
     display: flex;
     align-items: center;
     justify-content: flex-end;

@@ -1,6 +1,6 @@
 export { default as Navbar } from './Navbar/Navbar'
-export { default as HeroList } from './HeroList/HeroList'
-export { default as HeroCard } from './HeroCard/HeroCard'
+export { default as CharacterList } from './CharacterList/CharacterList'
+export { default as CharacterCard } from './CharacterCard/CharacterCard'
 export { default as Button } from './Button/Button'
 export { default as SectionTitle } from './SectionTitle/SectionTitle'
 export { default as Modal } from './Modal/Modal'

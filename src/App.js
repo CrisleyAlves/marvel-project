@@ -3,7 +3,7 @@ import { Provider } from 'react-redux'
 import store from './state/store'
 
 import { Navbar } from './components/'
-import HeroDetail from './pages/hero-detail/HeroDetail'
+import CharacterDetail from './pages/character-detail/CharacterDetail'
 
 const App = () => {
   return (
@@ -11,7 +11,7 @@ const App = () => {
       <Navbar />
 
       <div className='PageContainer'>
-        <HeroDetail />
+        <CharacterDetail />
       </div>
     </Provider>
   )

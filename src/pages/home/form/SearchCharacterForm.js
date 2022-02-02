@@ -1,5 +1,5 @@
 import { useSelector } from 'react-redux'
-import './SearchHeroForm.css'
+import './SearchCharacterForm.css'
 import {
   Button,
   Input,
@@ -7,15 +7,15 @@ import {
   Text
 } from "../../../components"
 
-const SearchHeroForm = ({
-  onSubmitSearchHero = () => {},
+const SearchCharacterForm = ({
+  onSubmitSearchCharacter = () => {},
   onChangeField = () => {},
   value
 }) => {
   const { characterSearchRequestStatus } = useSelector(state => state.character)
 
   return (
-    <form className="SearchHeroForm" onSubmit={onSubmitSearchHero}>
+    <form className="SearchCharacterForm" onSubmit={onSubmitSearchCharacter}>
       
     <Input
       name="name"
@@ -23,11 +23,11 @@ const SearchHeroForm = ({
       onChange={onChangeField}
       value={value}
       type="text"
-      placeholder="Search a hero by name"
+      placeholder="Search a character by name"
     />
 
     {!characterSearchRequestStatus.loading && 
-      <div className='SearchHeroForm-actions'>
+      <div className='SearchCharacterForm-actions'>
         <Button type="submit" styleType='secondary'>search</Button>
       </div>
     }
@@ -39,4 +39,4 @@ const SearchHeroForm = ({
   )
 }
 
-export default SearchHeroForm
+export default SearchCharacterForm

@@ -1,37 +1,37 @@
-.HeroCard {
+.CharacterCard {
   width: 45%;
   border: 1px solid rgba(0,0,0, 0.4);
 }
 
-.HeroCard-header {
+.CharacterCard-header {
   width: 100%;
   height: 170px;
   overflow: hidden;
 }
 
-.HeroCard-header img {
+.CharacterCard-header img {
   width: 100%;
   transition: 0.5s;
 }
 
-.HeroCard-header img:hover {
+.CharacterCard-header img:hover {
   transition: 0.5s;
   transform: scale(1.5);
 }
 
-.HeroCard-content {
+.CharacterCard-content {
   display: flex;
   justify-content: space-between;
   padding: 15px;
 }
 
-.HeroCard-content a:hover {
+.CharacterCard-content a:hover {
   color: var(--red);
   text-decoration: underline;
 }
 
 @media (min-width: 480px) {
-  .HeroCard-header {
+  .CharacterCard-header {
     height: 250px;
   }
 }

@@ -3,15 +3,16 @@ import { useEffect } from 'react';
 import './Home.css';
 
 import MarvelWallpaper from '../../images/marvel_wallpaper.jpg';
-import { HeroList, Loader, Text } from '../../components/';
+import { CharacterList, Loader, Text } from '../../components/';
+import SearchCharacterForm from './form/SearchCharacterForm';
 
-import SearchHeroForm from './form/SearchHeroForm';
 import { getAllCharacters } from '../../state/actions/character'
-import useSearchHero from '../../hooks/useSearchHero';
 import store from '../../state/store'
 
+import useSearchCharacter from '../../hooks/useSearchCharacter';
+
 const HomePage = () => {
-  const { search, onChangeField, searchHero } = useSearchHero()
+  const { search, onChangeField, searchCharacter } = useSearchCharacter()
   const { charactersListRequestStatus, charactersList } = useSelector(state => state.character)
 
   useEffect(() => {
@@ -23,17 +24,17 @@ const HomePage = () => {
       <div className='MarvelWallpaperWrapper'>
         <img src={MarvelWallpaper} alt='Marvel' title='Marvel' />
 
-        <SearchHeroForm
+        <SearchCharacterForm
           value={search.name}
           onChangeField={onChangeField}
-          onSubmitSearchHero={searchHero}
+          onSubmitSearchCharacter={searchCharacter}
         />
       </div>
 
       {charactersListRequestStatus.loading && <Loader />}
       {charactersListRequestStatus.mainError && <Text styleType='danger'>{charactersListRequestStatus.mainError}</Text>}
-      {!charactersListRequestStatus.loading && !charactersListRequestStatus.mainError && <HeroList heroes={charactersList} />}
-      {!charactersListRequestStatus.loading && charactersList.length === 0 && <Text styleType='warning'>We couldn't find any hero</Text>}
+      {!charactersListRequestStatus.loading && !charactersListRequestStatus.mainError && <CharacterList characters={charactersList} />}
+      {!charactersListRequestStatus.loading && charactersList.length === 0 && <Text styleType='warning'>We couldn't find any character</Text>}
     </div>
   )
 }
