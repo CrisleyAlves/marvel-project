@@ -1,7 +1,16 @@
+import { useEffect } from 'react';
+import { useParams } from 'react-router';
 import { useSelector } from 'react-redux';
 import './CharacterDetail.css'
 
-import { SectionTitle, Button, Modal, Loader } from '../../components';
+import {
+  SectionTitle,
+  Button,
+  Modal,
+  Loader,
+  NotFound
+} from '../../components';
+
 import SeriesList from './components/SeriesList';
 
 import EditCharacterForm from './form/EditCharacterForm';
@@ -9,11 +18,19 @@ import EditCharacterForm from './form/EditCharacterForm';
 import useEditCharacter from '../../hooks/useEditCharacter'
 import useToggle from '../../hooks/useToggle'
 
+import store from '../../state/store';
+import { getCharacterById } from '../../state/actions/character';
+
 const CharacterDetail = () => {
   const { setToggle: setShowModal, toggle: showModal } = useToggle()
   const { character, onChangeField, updateCharacter, setCharacter } = useEditCharacter()
-  
   const { characterDetail, characterDetailRequestStatus } = useSelector(state => state.character)
+  
+  const params = useParams();
+
+  useEffect(() => {
+    store.dispatch(getCharacterById(params.id))
+  }, [])
 
   const onClickEditButton = () => {
     setShowModal(true)
@@ -29,6 +46,8 @@ const CharacterDetail = () => {
   }
 
   if (characterDetailRequestStatus.loading) return <Loader />
+
+  if (characterDetailRequestStatus.mainError) return <NotFound />
 
   const characterPhoto = `${characterDetail?.thumbnail?.path}.${characterDetail?.thumbnail?.extension}`;
 

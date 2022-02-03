@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import './CharacterCard.css'
 
 const CharacterCard = ({
@@ -14,7 +15,7 @@ const CharacterCard = ({
       </div>
       <div className="CharacterCard-content">
         <h2>{name}</h2>
-        <a href="http://www.google.com">detail</a>
+        <Link to={`/character/${id}`}>detail</Link>
       </div>
     </div>
   )
