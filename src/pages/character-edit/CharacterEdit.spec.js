@@ -30,7 +30,7 @@ describe('CharacterEdit - Success use cases', () => {
       </RouterWrapper>
     );
 
-    await waitFor(() => console.log('updating ui'))
+    await waitFor(() => screen.findByPlaceholderText(''))
 
     const input = screen.getByPlaceholderText('')
     const submitButton = screen.getByText('Save')
@@ -42,14 +42,11 @@ describe('CharacterEdit - Success use cases', () => {
   });
 
   test('should save character in local storage', async () => {
-    
     render (
       <RouterWrapper>
         <CharacterEdit />
       </RouterWrapper>
     );
-    
-    await waitFor(() => console.log('updating ui'))
 
     const characters = JSON.parse(localStorage.getItem('characters')) || []
     expect(characters.length).not.toBe(1)

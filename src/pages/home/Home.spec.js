@@ -51,7 +51,7 @@ describe('Home - Success use cases', () => {
     fireEvent.change(searchInputText, { target: { value: 'character name' } })
     fireEvent.click(searchButtonSubmit);
 
-    await waitFor(() => console.log('updating ui'));
+    await waitFor(() => screen.findAllByTestId('CharacterCard'));
     const teste = await waitFor(() => screen.findAllByTestId('CharacterCard'));
     
     expect(teste.length).toBe(1)
@@ -77,7 +77,7 @@ describe('Home - Success use cases', () => {
     fireEvent.change(searchInputText, { target: { value: 'character name' } })
     fireEvent.click(searchButtonSubmit);
 
-    await waitFor(() => console.log('updating ui'));
+    await waitFor(() => screen.findByText("We couldn't find any character"));
     expect(screen.getByText("We couldn't find any character")).toBeInTheDocument()
   });
 });
@@ -97,7 +97,7 @@ describe('Home - Fail use cases', () => {
       </RouterWrapper>
     );
 
-    await waitFor(() => console.log('updating ui'));
+    await waitFor(() => screen.findByText("An error occured, please try again later"));
     
     expect(screen.getByText("An error occured, please try again later")).toBeInTheDocument()
   });
@@ -125,7 +125,7 @@ describe('Home - Fail use cases', () => {
     fireEvent.change(searchInputText, { target: { value: 'character name' } })
     fireEvent.click(searchButtonSubmit);
 
-    await waitFor(() => console.log('updating ui'));
+    await waitFor(() => screen.findByText('An error occured, please try again later'));
     expect(axiosSpy).toHaveBeenCalled()
     screen.getByText('An error occured, please try again later')
   });
