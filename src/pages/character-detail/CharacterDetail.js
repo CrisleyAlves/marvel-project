@@ -1,49 +1,28 @@
 import { useEffect } from 'react';
-import { useParams } from 'react-router';
+import { useNavigate, useParams } from 'react-router';
 import { useSelector } from 'react-redux';
 import './CharacterDetail.css'
 
 import {
   SectionTitle,
   Button,
-  Modal,
   Loader,
   NotFound
 } from '../../components';
-
 import SeriesList from './components/SeriesList';
-
-import EditCharacterForm from './form/EditCharacterForm';
-
-import useEditCharacter from '../../hooks/useEditCharacter'
-import useToggle from '../../hooks/useToggle'
 
 import store from '../../state/store';
 import { getCharacterById } from '../../state/actions/character';
 
 const CharacterDetail = () => {
-  const { setToggle: setShowModal, toggle: showModal } = useToggle()
-  const { character, onChangeField, updateCharacter, setCharacter } = useEditCharacter()
   const { characterDetail, characterDetailRequestStatus } = useSelector(state => state.character)
-  
-  const params = useParams();
+
+  const navigate = useNavigate()
+  const params = useParams()
 
   useEffect(() => {
     store.dispatch(getCharacterById(params.id))
   }, [])
-
-  const onClickEditButton = () => {
-    setShowModal(true)
-    setCharacter(characterDetail)
-  }
-
-  const onClickCloseModal = () => setShowModal(false)
-
-  const handleOnSubmitEditCharacterForm = (e) => {
-    e.preventDefault();
-    updateCharacter()
-    setShowModal(false)
-  }
 
   if (characterDetailRequestStatus.loading) return <Loader />
 
@@ -53,19 +32,12 @@ const CharacterDetail = () => {
 
   return (
     <div className='CharacterDetail'>
-      {showModal && 
-        <Modal title='Edit character' showModal={true} onClickCloseModal={onClickCloseModal}>
-          <EditCharacterForm character={character} onChangeField={onChangeField} onSubmitEditCharacterForm={handleOnSubmitEditCharacterForm} />
-        </Modal>
-      }
-
       <div className='CharacterDetail-header'>
         <img src={characterPhoto} alt='' title='' />
       </div>
       <div className='CharacterDetail-content'>
         <SectionTitle text='Name' />
-        <h1>{characterDetail.name} <Button styleType='secondary' onClick={onClickEditButton}>Edit</Button></h1>
-                
+        <h1>{characterDetail.name} <Button styleType='secondary' onClick={() => navigate('/character/edit/')}>Edit</Button></h1>
         <SeriesList />
       </div>
     </div>
