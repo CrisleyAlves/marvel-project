@@ -31,7 +31,7 @@ const CharacterDetail = () => {
   const characterPhoto = `${characterDetail?.thumbnail?.path}.${characterDetail?.thumbnail?.extension}`;
 
   return (
-    <div className='CharacterDetail'>
+    <div className='CharacterDetail' data-testid="CharacterDetail">
       <div className='CharacterDetail-header'>
         <img src={characterPhoto} alt='' title='' />
       </div>
