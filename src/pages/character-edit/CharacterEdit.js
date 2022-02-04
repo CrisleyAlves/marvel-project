@@ -31,7 +31,7 @@ const CharacterEdit = () => {
   }
 
   return (
-    <div className="CharacterEdit">
+    <div className="CharacterEdit" data-testid="CharacterEdit">
       {showModal &&
         <Modal title='Edit character' showModal={true} onClickCloseModal={onClickCloseModal}>
           <EditCharacterForm
