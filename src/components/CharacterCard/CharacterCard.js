@@ -9,7 +9,7 @@ const CharacterCard = ({
   const characterPhoto = `${thumbnail.path}.${thumbnail.extension}`;
 
   return (
-    <div className="CharacterCard">
+    <div className="CharacterCard" data-testid="CharacterCard">
       <div className="CharacterCard-header">
         <img className="CharacterCard-image" src={characterPhoto} alt="" title="" />
       </div>
