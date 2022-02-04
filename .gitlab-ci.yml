@@ -1,0 +1,15 @@
+stages:
+  - build
+  - test
+
+build-job:
+  stage: build
+  script:
+    - echo 'Building'
+    - npm run install
+
+unit-test-job:
+  stage: test
+  script:
+    - echo 'Running frontend unit tests'
+    - npm run test
