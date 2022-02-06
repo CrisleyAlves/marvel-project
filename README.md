@@ -1,5 +1,6 @@
 ### Requirements to run the project
-To run the project you should have the latest version of Node and create-react-app installed.
+To run the project you should have the latest version of Node and create-react-app installed
+
 * Node - https://nodejs.org/en/
 * Create React App - https://github.com/facebook/create-react-app
 
