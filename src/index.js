@@ -5,7 +5,6 @@ import './styles/reset.css';
 import './styles/variables.css';
 import './styles/font.css';
 import './App.css';
-import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
   <React.StrictMode>
@@ -13,5 +12,3 @@ ReactDOM.render(
   </React.StrictMode>,
   document.getElementById('root')
 );
-
-reportWebVitals();
