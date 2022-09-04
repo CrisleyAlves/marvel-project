@@ -18,11 +18,28 @@ export const mockSearchCharacterRequestWithData = () => ({
   }
 })
 
+export const mockSearchCharacterRequestWithNoData = () => ({
+  data: {
+    code: 200,
+    data: {
+      results: []
+    }
+  }
+})
+
 export const mockCharacterDetailRequestWithData = () => ({
   data: {
     code: 200,
     data: {
       results: [create3DMANCharacterMock()]
+    }
+  }
+})
+
+export const mockErrorCatchBlock = () => ({
+  response: {
+    data: {
+      status: 'error message'
     }
   }
 })
