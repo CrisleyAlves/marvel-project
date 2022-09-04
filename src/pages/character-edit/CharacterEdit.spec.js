@@ -14,8 +14,6 @@ import { createSpiderManCharacterMock } from '../../tests/mocks/character';
 
 const spiderManCharacter = createSpiderManCharacterMock()
 
-jest.mock('axios')
-
 describe('CharacterEdit - Success use cases', () => {
   beforeEach(() => {
     cleanup()

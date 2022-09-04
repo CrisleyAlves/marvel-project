@@ -8,7 +8,13 @@ import {
 } from '@testing-library/react';
 
 import RouterWrapper from '../../tests/RouterWrapper';
-import { mockGetAllCharactersRequestWithData, mockSearchCharacterRequestWithData } from '../../tests/mocks/requests';
+
+import {
+  axiosMockErrorFromTheAPI,
+  axiosMockGetAllCharactersRequestWithData,
+  axiosMockSearchCharacterRequestWithData,
+  axiosMockSearchCharacterRequestWithNoData,
+} from '../../tests/mocks/axios';
 
 import Home from './Home'
 
@@ -17,7 +23,7 @@ jest.mock('axios')
 describe('Home - Success use cases', () => {
   beforeEach(() => {
     cleanup()
-    axios.get.mockResolvedValue(mockGetAllCharactersRequestWithData())
+    axiosMockGetAllCharactersRequestWithData()
   })
   
   afterEach(() => jest.restoreAllMocks());
@@ -43,7 +49,7 @@ describe('Home - Success use cases', () => {
     await waitFor(() => screen.findAllByTestId('CharacterCard'));
 
     // Mocking the search character request
-    axios.get.mockResolvedValue(mockSearchCharacterRequestWithData())
+    axiosMockSearchCharacterRequestWithData()
 
     const searchInputText = screen.getByPlaceholderText('Search a character by name');
     const searchButtonSubmit = screen.getByText('search');
@@ -67,9 +73,7 @@ describe('Home - Success use cases', () => {
     await waitFor(() => screen.findAllByTestId('CharacterCard'));
 
     // Mocking the search character request
-    const searchCharacterMock = mockSearchCharacterRequestWithData()
-    searchCharacterMock.data.data.results = []
-    axios.get.mockResolvedValue(searchCharacterMock)
+    axiosMockSearchCharacterRequestWithNoData()
 
     const searchInputText = screen.getByPlaceholderText('Search a character by name');
     const searchButtonSubmit = screen.getByText('search');
@@ -85,7 +89,7 @@ describe('Home - Success use cases', () => {
 describe('Home - Fail use cases', () => {
   beforeEach(() => {
     cleanup()
-    axios.get.mockResolvedValue({})
+    axiosMockErrorFromTheAPI()
   })
   
   afterEach(() => jest.restoreAllMocks());
@@ -104,7 +108,7 @@ describe('Home - Fail use cases', () => {
 
   test('Should show an error message when receiving an error from search request', async () => {
     // populating initial data
-    axios.get.mockResolvedValue(mockGetAllCharactersRequestWithData())
+    axiosMockGetAllCharactersRequestWithData()
 
     render (
       <RouterWrapper>
@@ -119,7 +123,7 @@ describe('Home - Fail use cases', () => {
     const searchButtonSubmit = screen.getByText('search');
 
     // Mocking an error from the api
-    axios.get.mockResolvedValue({})
+    axiosMockErrorFromTheAPI()
     const axiosSpy = jest.spyOn(axios, 'get')
 
     fireEvent.change(searchInputText, { target: { value: 'character name' } })

@@ -1,4 +1,3 @@
-import axios from 'axios';
 import {
   cleanup,
   fireEvent,
@@ -8,23 +7,19 @@ import {
 } from '@testing-library/react';
 
 import RouterWrapper from '../../tests/RouterWrapper';
-import { mockCharacterDetailRequestWithData } from '../../tests/mocks/requests';
 
 import CharacterDetail from './CharacterDetail'
+import {
+  axiosMockCharacterDetailRequestWithData,
+  axiosMockErrorCatchBlock
+} from '../../tests/mocks/axios';
 
 jest.mock('axios')
 
 describe('CharacterDetail - Fail use cases', () => {
   beforeEach(() => {
     cleanup()
-
-    axios.get.mockRejectedValue({
-      response: {
-        data: {
-          status: 'error message'
-        }
-      }
-    })
+    axiosMockErrorCatchBlock()
   })
 
   afterEach(() => jest.restoreAllMocks())
@@ -48,7 +43,7 @@ describe('CharacterDetail - Fail use cases', () => {
 describe('CharacterDetail - Success use cases', () => {
   beforeEach(() => {
     cleanup()
-    axios.get.mockResolvedValue(mockCharacterDetailRequestWithData())
+    axiosMockCharacterDetailRequestWithData()
   })
   
   afterEach(() => jest.restoreAllMocks());
